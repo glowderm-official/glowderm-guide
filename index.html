@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GLOWDERM TXA SET 촬영 가이드 v2</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --rose: #C0446B;
+    --rose-light: #f9eef3;
+    --gray-50: #fafafa;
+    --gray-100: #f4f4f4;
+    --gray-200: #e8e8e8;
+    --gray-400: #999;
+    --gray-600: #555;
+    --gray-800: #222;
+    --text: #1a1a1a;
+    --font-kr: 'Pretendard', 'Malgun Gothic', 'Apple SD Gothic Neo', system-ui, -apple-system, sans-serif;
+    --font-cn: 'Microsoft YaHei', 'PingFang SC', 'Noto Sans SC', system-ui, sans-serif;
+    --col-w: 720px;
+    --radius: 6px;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: #fff; color: var(--text); line-height: 1.75; font-size: 15px; -webkit-font-smoothing: antialiased; }
+  body.lang-kr { font-family: var(--font-kr); }
+  body.lang-cn { font-family: var(--font-cn); }
+  .pane { display: none; }
+  body.lang-kr .pane-kr { display: block; }
+  body.lang-cn .pane-cn { display: block; }
+  .lang-bar {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.96); border-bottom: 1px solid var(--gray-200);
+    backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center;
+    gap: 6px; padding: 8px 16px;
+  }
+  .lang-btn {
+    display: inline-flex; align-items: center; gap: 5px; padding: 5px 14px;
+    border-radius: 20px; border: 1.5px solid var(--gray-200); background: #fff;
+    font-size: 13px; font-weight: 600; color: var(--gray-600); cursor: pointer; transition: all .15s; white-space: nowrap;
+  }
+  .lang-btn:hover { border-color: var(--rose); color: var(--rose); }
+  .lang-btn.active { background: var(--rose); border-color: var(--rose); color: #fff; }
+  .page { max-width: var(--col-w); margin: 0 auto; padding: 48px 24px 80px; }
+  h1.doc-title { font-size: 28px; font-weight: 700; color: var(--text); line-height: 1.3; margin-bottom: 6px; letter-spacing: -0.3px; }
+  h1.doc-title .brand-accent { color: var(--rose); }
+  .doc-subtitle { font-size: 13px; color: var(--gray-400); margin-bottom: 4px; }
+  .doc-lead { font-size: 13px; color: var(--gray-600); margin-bottom: 24px; }
+  hr.divider { border: none; border-top: 1.5px solid var(--gray-200); margin: 28px 0; }
+  hr.divider-thin { border: none; border-top: 1px solid var(--gray-100); margin: 18px 0; }
+  .section-title {
+    display: flex; align-items: center; gap: 8px; font-size: 17px; font-weight: 700;
+    color: var(--text); margin-bottom: 14px; padding-bottom: 7px; border-bottom: 2px solid var(--gray-200);
+  }
+  .section-title .marker { display: inline-block; width: 4px; height: 18px; background: var(--rose); border-radius: 2px; flex-shrink: 0; }
+  .subsection-title { font-size: 14px; font-weight: 700; color: var(--gray-800); margin: 16px 0 8px; }
+  p { margin-bottom: 8px; }
+  ul { padding-left: 20px; margin-bottom: 8px; }
+  li { margin-bottom: 4px; }
+  b, strong { font-weight: 700; color: var(--text); }
+  .num { font-weight: 700; color: var(--rose); }
+  .callout {
+    display: flex; gap: 12px; background: var(--gray-50); border-left: 3px solid var(--rose);
+    border-radius: 0 var(--radius) var(--radius) 0; padding: 12px 14px; margin: 12px 0;
+    font-size: 14px; line-height: 1.7;
+  }
+  .callout .callout-icon { font-size: 16px; flex-shrink: 0; margin-top: 2px; }
+  .callout .callout-body { flex: 1; }
+  .callout.warning { background: #fff8f0; border-left-color: #e07b20; }
+  .callout.info { background: #f0f4ff; border-left-color: #4a6cf7; }
+  .scene-block { margin: 16px 0; border: 1px solid var(--gray-200); border-radius: var(--radius); overflow: hidden; }
+  .scene-header {
+    background: var(--gray-100); padding: 8px 14px; font-size: 13px; font-weight: 700;
+    color: var(--gray-800); border-bottom: 1px solid var(--gray-200); display: flex; align-items: center; gap: 6px;
+  }
+  .scene-header .scene-num {
+    display: inline-block; background: var(--rose); color: #fff; font-size: 11px;
+    font-weight: 700; padding: 1px 7px; border-radius: 10px;
+  }
+  .scene-body { padding: 12px 14px; }
+  .cut-label {
+    display: inline-block; font-size: 11px; font-weight: 700; background: #e8e8e8;
+    color: #555; padding: 1px 7px; border-radius: 4px; margin-bottom: 4px; letter-spacing: .3px;
+  }
+  .narr-label {
+    display: inline-block; font-size: 11px; font-weight: 700; background: #ede0f7;
+    color: #7c4dbd; padding: 1px 7px; border-radius: 4px; margin-bottom: 4px; letter-spacing: .3px;
+  }
+  .cut-text { font-size: 14px; margin-bottom: 10px; color: var(--gray-800); }
+  .narr-text {
+    font-size: 14px; font-style: italic; color: #4a2a6e; background: #f8f2ff;
+    border-radius: 4px; padding: 8px 12px; border-left: 3px solid #9c6ed6; margin-bottom: 6px;
+  }
+  .note-text { font-size: 13px; color: var(--gray-600); margin-top: 4px; }
+  .hashtag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .hashtag-item { background: var(--rose-light); color: var(--rose); font-size: 13px; font-weight: 600; padding: 3px 10px; border-radius: 14px; white-space: nowrap; }
+  .ref-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 16px; }
+  @media (max-width: 600px) { .ref-grid { grid-template-columns: 1fr; } }
+  .ref-grid .ref-card-full { grid-column: 1 / -1; }
+  .ref-card { border: 1px solid var(--gray-200); border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; }
+  .ref-card video { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; background: #000; display: block; }
+  .ref-card-body { padding: 12px 14px 14px; flex: 1; display: flex; flex-direction: column; gap: 6px; }
+  .ref-card-num { font-size: 11px; font-weight: 700; color: var(--rose); text-transform: uppercase; letter-spacing: .5px; }
+  .ref-card-title { font-size: 14px; font-weight: 700; color: var(--text); line-height: 1.4; }
+  .ref-card-desc { font-size: 13px; color: var(--gray-600); line-height: 1.65; flex: 1; }
+  .ref-card-desc ul { padding-left: 16px; margin-top: 4px; }
+  .ref-card-desc li { margin-bottom: 3px; }
+  .ref-card-link {
+    display: inline-block; margin-top: 6px; font-size: 13px; font-weight: 600; color: var(--rose);
+    text-decoration: none; border: 1px solid var(--rose); border-radius: 4px; padding: 4px 10px;
+    align-self: flex-start; transition: all .15s;
+  }
+  .ref-card-link:hover { background: var(--rose); color: #fff; }
+  .checklist { list-style: none; padding: 0; margin-bottom: 8px; }
+  .checklist li { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; margin-bottom: 5px; color: var(--gray-800); }
+  .checklist li::before { content: "✦"; color: var(--rose); font-size: 10px; margin-top: 5px; flex-shrink: 0; }
+  .spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px; }
+  @media (max-width: 520px) { .spec-grid { grid-template-columns: 1fr; } }
+  .spec-card { border: 1px solid var(--gray-200); border-radius: var(--radius); overflow: hidden; }
+  .spec-card-header { background: var(--gray-100); padding: 8px 12px; font-size: 12px; font-weight: 700; color: var(--gray-600); border-bottom: 1px solid var(--gray-200); }
+  .spec-card-body { padding: 10px 12px; font-size: 13.5px; line-height: 1.7; }
+  .spec-card-body li { margin-bottom: 3px; }
+  @media print {
+    .lang-bar { display: none !important; }
+    .pane-kr, .pane-cn { display: block !important; page-break-before: always; }
+    .pane-kr { page-break-before: avoid; }
+    .ref-card video { display: none; }
+    body { font-size: 13px; }
+  }
+  @media (max-width: 600px) { .page { padding: 32px 16px 60px; } h1.doc-title { font-size: 22px; } .section-title { font-size: 15px; } }
+</style>
+</head>
+<body class="lang-kr">
+
+<div class="lang-bar">
+  <button class="lang-btn active" id="btn-kr" onclick="setLang('kr')">🇰🇷 한국어</button>
+  <button class="lang-btn" id="btn-cn" onclick="setLang('cn')">🇨🇳 简体中文</button>
+</div>
+
+<p style="text-align:center"><a href="mojip.html">📋 모집글 보기 / 查看招募公告</a></p>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- KR PANE -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="pane pane-kr">
+<div class="page">
+
+  <h1 class="doc-title"><span class="brand-accent">GLOWDERM</span> TXA SET 촬영 가이드</h1>
+  <p class="doc-subtitle">방한 인플루언서용 · 출처: GLOWDERM 브랜드 공식 가이드</p>
+  <p class="doc-lead">참고용 — 본인 스타일로 자유롭게. 단 아래 필수 컷·멘트는 꼭 지킬 것.</p>
+  <hr class="divider">
+
+  <!-- 브랜드 정보 -->
+  <div class="section-title"><span class="marker"></span>브랜드 정보</div>
+  <ul class="checklist">
+    <li><strong>브랜드:</strong> GLOWDERM &nbsp;|&nbsp; 크림 30ml / 클렌저 120g &nbsp;|&nbsp; K-약국 인기 TXA 시리즈</li>
+    <li><strong>입점 매장:</strong> 성수 / 명동 / 강남 중 본인이 선택한 약국 — 약국 명칭 + 지하철역 위치 <strong>반드시 언급</strong></li>
+  </ul>
+  <hr class="divider">
+
+  <!-- 제품 정보 -->
+  <div class="section-title"><span class="marker"></span>제품 정보</div>
+  <p style="font-size:14px;margin-bottom:12px;">GLOWDERM TXA SET (CREAM + CLEANSER / each 1EA)</p>
+  <div class="spec-grid">
+    <div class="spec-card">
+      <div class="spec-card-header">TXA 5% Dark spot Mela Cream (30ml / 1.01 fl.oz)</div>
+      <div class="spec-card-body">
+        <ul>
+          <li>트라넥삼산(TXA) <strong>50,000ppm</strong> 고함량, 멜라닌 신호 차단, 기미 억제, 피부 속 기미 잡티 뿌리 타격</li>
+          <li>속기미 잡티(<strong class="num">11.43%</strong>)·겉기미 잡티(<strong class="num">22.76%</strong>) 개선 임상 완료</li>
+          <li>색소침착 개선(<strong class="num">1.90%</strong>) 임상 완료</li>
+          <li>바른 즉각 눈으로 확인 가능한 톤 정리 (은은한 진주핏 펄감)</li>
+          <li>고분자 리프팅 필름 설계로 흡수 후 착 달라붙는 밀착 고정</li>
+          <li>저자극 테스트 완료 — 예민성/민감성 피부 데일리 사용 가능</li>
+          <li>피부과 시술 사후 관리템·데일리 홈케어 모두 적합</li>
+        </ul>
+      </div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-card-header">TXA Brightening Peeling Pack Cleanser (120g / 4.23 oz.)</div>
+      <div class="spec-card-body">
+        <ul>
+          <li>필링·팩·클렌저 <strong>3in1</strong></li>
+          <li>고마쥬 필링으로 거뭇한 피지부터 묵은 각질 제거</li>
+          <li>TXA+글루타치온 함유 브라이트닝 톤 케어 (세안 직후 맑고 균일한 피부결)</li>
+          <li>블랙헤드(<strong class="num">54.35%</strong>)·묵은각질(<strong class="num">68.20%</strong>) 개선 임상 완료</li>
+          <li>저자극 테스트 완료</li>
+          <li>+TIP) 국소 부위 톤업케어 (목/겨드랑이/팔꿈치/발꿈치 등)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="callout warning" style="margin-top:14px;">
+    <span class="callout-icon">⚠️</span>
+    <div class="callout-body"><strong>주의:</strong> 두 제품의 TXA 성분 함량은 서로 다름. 촬영·언급 시 반드시 인지할 것.</div>
+  </div>
+  <div class="callout warning" style="margin-top:8px;">
+    <span class="callout-icon">🚫</span>
+    <div class="callout-body"><strong>※ 위 임상 수치는 내부 참고용</strong> — 샤오홍슈 게시물 본문·자막·나레이션에 수치 직접 사용 금지 (금지어 규정)</div>
+  </div>
+  <hr class="divider">
+
+  <!-- 촬영 규칙 -->
+  <div class="section-title"><span class="marker"></span>촬영 규칙 (필수)</div>
+  <ul class="checklist">
+    <li>고화질 촬영, 필터·저화질 자제</li>
+    <li>전체 구조: 약국 외관 → 글로우덤 브랜드 소개 → 타 제품들 소개</li>
+    <li><strong>45초 이상</strong>, 브이로그(모음집) 불가</li>
+    <li>자막 + 나레이션 필요 (자기 말투로 자연스럽게, 무음·자막만이면 재촬영 요청 가능)</li>
+    <li>제공 내역은 영상 초반 <strong>10초 동안 노출</strong> (INTRO 제외 10초)</li>
+  </ul>
+  <div class="callout info">
+    <span class="callout-icon">💡</span>
+    <div class="callout-body"><strong>영상 초반(10초)은 아래 촬영안 내용으로 진행</strong></div>
+  </div>
+  <hr class="divider">
+
+  <!-- 영상 필수 포함 -->
+  <div class="section-title"><span class="marker"></span>영상 필수 포함 사항</div>
+  <ul class="checklist">
+    <li>약국 이름·위치</li>
+    <li>약국 간판 촬영 (얼굴 노출 시 더 좋음)</li>
+    <li>브랜드(GLOWDERM)·제품(TXA 5% CREAM + TXA CLEANSER) 언급</li>
+    <li>매장 내 다양한 상품 함께 언급<br><span style="font-size:13px;color:var(--gray-600);">예시: 뷰티 제품 / 건강기능식품 / 선물용 상품 등</span></li>
+    <li>제품 특징·사용감 멘트는 가이드라인 내 지정 표현을 따를 것</li>
+  </ul>
+  <hr class="divider">
+
+  <!-- 썸네일 -->
+  <div class="section-title"><span class="marker"></span>썸네일 구성</div>
+  <div class="scene-block">
+    <div class="scene-body">
+      <div class="cut-label">구성</div>
+      <p class="cut-text"><strong>1~3 반드시 포함</strong></p>
+      <ul class="checklist">
+        <li>1) 약국 외관</li>
+        <li>2) 글로우덤 (테두리·스티커 강조)</li>
+        <li>3) 본인 얼굴 등</li>
+      </ul>
+      <p class="note-text">* 하단 참고 레퍼런스 내 이미지 참고</p>
+    </div>
+  </div>
+  <hr class="divider">
+
+  <!-- #1 INTRO -->
+  <div class="section-title"><span class="marker"></span>🎬 촬영안 (필수)</div>
+
+  <div class="scene-block">
+    <div class="scene-header"><span class="scene-num">#1 INTRO</span>3안 중 택1 ★ 지하철역 이름+매장 이름 자막 필수</div>
+    <div class="scene-body">
+
+      <!-- 1안 -->
+      <p style="font-weight:700;font-size:14px;margin-bottom:8px;color:var(--rose);">1안 — 한국 약국 강조형</p>
+      <div class="cut-label">자막</div>
+      <p class="cut-text">"한국 오면 지금 꼭 사야하는것은?! 2026년 하반기 한국 약국 쇼핑리스트"</p>
+      <div class="cut-label">컷</div>
+      <p class="cut-text">약국 간판 클로즈업 → 입장 → 매대 → 제품 들고 추천</p>
+      <div class="narr-label">나레이션</div>
+      <p class="narr-text">"한국 방문했는데 뭘 사야할지 고민인가요? 쇼핑 리스트 알려줄게요. 제일 먼저 사야하는것은 바로 이것입니다."</p>
+
+      <hr class="divider-thin">
+
+      <!-- 2안 -->
+      <p style="font-weight:700;font-size:14px;margin-bottom:8px;color:var(--rose);">2안 — 장소 강조형</p>
+      <div class="cut-label">자막</div>
+      <p class="cut-text">"요즘 한국인들은 올리브영 안가고 여기간데요. 한국오면 지금 꼭 가야하는 곳!?"</p>
+      <div class="cut-label">컷</div>
+      <p class="cut-text">올리브영 지나 걸어가는 POV → 약국 외관 → 입장 → SNS 인서트</p>
+      <div class="narr-label">나레이션</div>
+      <p class="narr-text">"!? 아니 요즘 한국인들 다 어디갔어요?;;;; 아~ 여기있었구나!? 저도 SNS에서 '약국명' 봤어요!"</p>
+
+      <hr class="divider-thin">
+
+      <!-- 3안 -->
+      <p style="font-weight:700;font-size:14px;margin-bottom:8px;color:var(--rose);">3안 — 재구매 강조형 (실사용 전제)</p>
+      <div class="cut-label">자막</div>
+      <p class="cut-text">"이미 한통 다 쓴 한국 약국 입점템!?"</p>
+      <div class="cut-label">컷</div>
+      <p class="cut-text">한국 도착 뉘앙스(공항 BEST, 길거리 간판 대체 가능) → 약국 가는 POV → 간판 클로즈업 → 매대</p>
+      <div class="narr-label">나레이션</div>
+      <p class="narr-text">"전에 한국에서 산 제품이 있었는데요. 다 써서 다시 구매하러 왔어요. 여기서만 살 수 있는 제품인데! 바로 찾아보겠습니다!"</p>
+    </div>
+  </div>
+
+  <!-- #2 -->
+  <div class="scene-block">
+    <div class="scene-header"><span class="scene-num">#2</span>약국 및 제품 소개</div>
+    <div class="scene-body">
+      <div class="callout info" style="margin-bottom:10px;">
+        <span class="callout-icon">💡</span>
+        <div class="callout-body">약사님 얼굴 포함 컷은 약사님께 문의 후 진행 (인플루언서 직접 문의, 명동 레디영은 어려울 수 있음)</div>
+      </div>
+      <div class="cut-label">자막</div>
+      <p class="cut-text">"TXA 고함량! 약국에서 가장 인기있는/많이찾는 제품?!"</p>
+      <div class="cut-label">컷</div>
+      <p class="cut-text">약사님이 TXA 성분·제품 추천·설명 (전문가 권위)</p>
+      <div class="narr-label">나레이션</div>
+      <p class="narr-text">"한국에서는 처방 없이 기미 잡티 색소침착 케어 제품을 구매할 수 있는데요. 저는 약사님께 직접 물어봐서 구매했어요. TXA 라인 중 이 제품이 지금 약국에서 가장 인기있는 제품이래요. 매일 써도 OK래요."</p>
+    </div>
+  </div>
+
+  <!-- #3 -->
+  <div class="scene-block">
+    <div class="scene-header"><span class="scene-num">#3</span>제품 테스트 (핵심, 3-1·2안 모두)</div>
+    <div class="scene-body">
+      <div class="cut-label">자막</div>
+      <p class="cut-text">"직접 사용해보겠습니다."</p>
+
+      <p style="font-weight:700;font-size:14px;margin:10px 0 6px;color:var(--rose);">3-1안 — 크림</p>
+      <div class="cut-label">컷</div>
+      <p class="cut-text">손등·얼굴 테스트 → 문질러 흡수</p>
+      <div class="narr-label">나레이션</div>
+      <p class="narr-text">"크림은 TXA가 5%로 고함량으로 들어가있어요. 피부 톤 케어와 탄력 케어에도 좋데요. 꾸준히 쓰니 톤이 정돈됐다는 후기가 많아요."</p>
+
+      <hr class="divider-thin">
+
+      <p style="font-weight:700;font-size:14px;margin:10px 0 6px;color:var(--rose);">3-2안 — 클렌저</p>
+      <div class="cut-label">컷</div>
+      <p class="cut-text">숙소 별도 촬영, 손등·얼굴 도포 세안 → 물 롤링 → 닦아내기</p>
+      <div class="narr-label">나레이션</div>
+      <p class="narr-text">"클렌저는 고마쥬 타입 제형으로 자극이 적어요. 특히 필링 투 폼 제형으로 필링과 클렌징을 한번에 할 수 있어요. 블랙헤드 관리나 묵은각질 케어를 하기 좋아요."</p>
+    </div>
+  </div>
+
+  <!-- #4 -->
+  <div class="scene-block">
+    <div class="scene-header"><span class="scene-num">#4</span>루틴/꿀팁 (CTA)</div>
+    <div class="scene-body">
+      <div class="cut-label">컷</div>
+      <p class="cut-text">크림·클렌저 같이</p>
+      <div class="narr-label">나레이션</div>
+      <p class="narr-text">"클렌저와 크림을 같이 쓰면 시너지 효과를 더 볼 수 있어요. 한국 오면 (방문약국명)에서 이 제품들은 꼭 사세요. 한국 약국에서만 살 수 있는 매장인기템이에요!"</p>
+    </div>
+  </div>
+
+  <div class="callout" style="margin:8px 0 16px;">
+    <span class="callout-icon">📌</span>
+    <div class="callout-body">#5~ : 약국 판매 타 브랜드 자유 언급</div>
+  </div>
+
+  <!-- ENDING -->
+  <div class="scene-block">
+    <div class="scene-header"><span class="scene-num">#ENDING</span></div>
+    <div class="scene-body">
+      <div class="cut-label">컷</div>
+      <p class="cut-text">약국 쇼핑백 들고 자랑</p>
+      <div class="narr-label">나레이션</div>
+      <p class="narr-text">"여행 왔다가 또 엄청난걸 찾았어요‼️ 같이 구경하러 가요" 등 자유 마무리</p>
+    </div>
+  </div>
+  <hr class="divider">
+
+  <!-- 해시태그 -->
+  <div class="section-title"><span class="marker"></span>해시태그 (본문 작성)</div>
+  <p style="font-size:13px;color:var(--gray-600);margin-bottom:6px;">공통 태그:</p>
+  <div class="hashtag-list">
+    <span class="hashtag-item">#한국약국</span>
+    <span class="hashtag-item">#KR약국</span>
+    <span class="hashtag-item">#한국필수코스</span>
+    <span class="hashtag-item">#한국인피부</span>
+    <span class="hashtag-item">#한국약국템</span>
+    <span class="hashtag-item">#TXA</span>
+    <span class="hashtag-item">#기초케어</span>
+    <span class="hashtag-item">#외국인친화</span>
+  </div>
+  <p style="font-size:13px;color:var(--gray-600);margin:12px 0 6px;">매장 태그 (택1):</p>
+  <div class="hashtag-list">
+    <span class="hashtag-item">#명동레디영약국</span>
+    <span class="hashtag-item">#도레미약국성수점</span>
+    <span class="hashtag-item">#도레미약국샾성수점</span>
+    <span class="hashtag-item">#제일그랜드약국</span>
+  </div>
+  <hr class="divider">
+
+  <!-- 유의사항 -->
+  <div class="section-title"><span class="marker"></span>진행 시 유의사항</div>
+  <p style="font-weight:700;font-size:14px;margin-bottom:6px;">콘텐츠 제작</p>
+  <ul class="checklist">
+    <li>강조 우선순위는 GLOWDERM 제품 2종</li>
+    <li>썸네일 = 약국 외관 + 제공 제품(강조) + 본인 얼굴 필수</li>
+  </ul>
+  <p style="font-weight:700;font-size:14px;margin:12px 0 6px;">콘텐츠 발행</p>
+  <ul class="checklist">
+    <li>게시 전 PR 담당자 검수 필수</li>
+    <li>방문 후 <strong>5일 이내</strong> 업로드</li>
+    <li>게시물 임의 삭제 불가·좋아요·댓글창 닫기 금지</li>
+    <li>클린본(자막 없는 원본) 저장 필수</li>
+    <li>게시물은 브랜드 2차 홍보 자료로 활용 가능</li>
+  </ul>
+  <p style="font-weight:700;font-size:14px;margin:12px 0 6px;">협업 조건·페널티</p>
+  <ul class="checklist">
+    <li>원고 미제출·연락 두절 시 업계 블랙리스트 등록·전체 공지</li>
+    <li>기한 미준수·중도 취소 시 행사 손실 비용 부담·향후 협업 제한</li>
+    <li>수정 요청 적극 협조</li>
+    <li>규정 위반·불가항력으로 미노출 시 수정·추가 게시 협조</li>
+  </ul>
+  <hr class="divider">
+
+  <!-- 참고 레퍼런스 -->
+  <div class="section-title"><span class="marker"></span>참고할 만한 레퍼런스</div>
+  <div class="callout info" style="margin-bottom:20px;">
+    <span class="callout-icon">💡</span>
+    <div class="callout-body"><strong>핵심 패턴:</strong> 신뢰신호 먼저 깔기 / 재구매 증거 / 성분표 클로즈업 / 로컬 확장 아웃트로</div>
+  </div>
+
+  <div class="subsection-title">1. 썸네일</div>
+  <p style="font-size:13.5px;color:var(--gray-600);margin-bottom:10px;"><strong>4컷 분할 썸네일</strong> — 1) 약국 외관 &nbsp;2) 글로우덤(테두리/스티커 강조) &nbsp;3) 본인 얼굴 &nbsp;4) 타사 제품</p>
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:14px;">
+    <img src="assets/GLOWDERM_TXA_thumb_pika1.png" alt="인생네컷 썸네일 예시" style="width:100%;border-radius:8px;border:1px solid var(--gray-200);display:block;">
+    <img src="assets/GLOWDERM_TXA_thumb_pika2.png" alt="약국 썸네일 예시" style="width:100%;border-radius:8px;border:1px solid var(--gray-200);display:block;">
+  </div>
+  <div class="callout" style="margin-bottom:20px;">
+    <span class="callout-icon">📝</span>
+    <div class="callout-body" style="font-size:13px;line-height:1.75;">
+      <p style="margin-bottom:6px;"><strong>[pika酱·05-24·♥5.1천]</strong> 不限款式！不限次数！明洞这里！免费拍人生四格 I人全自助没人管！<br><span style="color:var(--gray-600);">(스타일·횟수 무제한 / 명동 / 인생네컷 무료 / 완전셀프)</span></p>
+      <p style="margin-bottom:6px;"><strong>[小小豆不小·03-08·♥1.6천]</strong> 中文翻译有 / 韩国本地人推荐 药局 / 值得买的变美清单<br><span style="color:var(--gray-600);">(중국어번역 있음 / 현지인 추천 약국 / 사볼만한 뷰티템)</span></p>
+      <p style="margin-bottom:6px;"><strong>[pika酱·04-22·♥1.1천]</strong> 留子经验帮你码全！明洞必逛一站式药局 实用购物清单 不会韩语！没用过！怎么退税！<br><span style="color:var(--gray-600);">(유학생경험 총정리 / 명동 원스톱 약국 / 실용 쇼핑리스트)</span></p>
+      <p><strong>[琳三岁同学·03-26·♥491]</strong> 2026 来明洞必逛的地儿!<br><span style="color:var(--gray-600);">(2026 명동 필수코스)</span></p>
+    </div>
+  </div>
+
+  <div class="subsection-title">2. 콘텐츠 · INTRO (총 2안) <span style="font-size:12px;font-weight:400;color:var(--gray-600);">※ 구버전 참고 2안 — 현행은 위 #1의 3안 기준</span></div>
+  <p style="font-size:13.5px;color:var(--gray-600);margin-bottom:12px;">패턴: 가는길 → 외관 → 내부 → 진열매대</p>
+
+  <div class="scene-block">
+    <div class="scene-header"><span class="scene-num">1안</span>가는길 안내형</div>
+    <div class="scene-body">
+      <video controls playsinline preload="metadata"
+        poster="assets/GLOWDERM_TXA_intro1a_가는길.png"
+        src="assets/GLOWDERM_TXA_INTRO1_가는길.mp4"
+        style="width:100%;max-height:480px;object-fit:contain;background:#000;border-radius:6px;display:block;margin-bottom:10px;"></video>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+        <figure style="margin:0;"><img src="assets/GLOWDERM_TXA_intro1a_가는길.png" alt="약국 가는길" style="width:100%;border-radius:6px;border:1px solid var(--gray-200);display:block;"><figcaption style="font-size:11px;color:var(--gray-600);text-align:center;margin-top:3px;">약국 가는길</figcaption></figure>
+        <figure style="margin:0;"><img src="assets/GLOWDERM_TXA_intro1b_외관.png" alt="약국 외관" style="width:100%;border-radius:6px;border:1px solid var(--gray-200);display:block;"><figcaption style="font-size:11px;color:var(--gray-600);text-align:center;margin-top:3px;">약국 외관</figcaption></figure>
+        <figure style="margin:0;"><img src="assets/GLOWDERM_TXA_intro1c_진열.png" alt="진열매대" style="width:100%;border-radius:6px;border:1px solid var(--gray-200);display:block;"><figcaption style="font-size:11px;color:var(--gray-600);text-align:center;margin-top:3px;">진열매대</figcaption></figure>
+      </div>
+    </div>
+  </div>
+
+  <div class="scene-block" style="margin-bottom:20px;">
+    <div class="scene-header"><span class="scene-num">2안</span>즉시 진입형</div>
+    <div class="scene-body">
+      <video controls playsinline preload="metadata"
+        poster="assets/GLOWDERM_TXA_intro2a_외부.png"
+        src="assets/GLOWDERM_TXA_INTRO2_즉시진입.mp4"
+        style="width:100%;max-height:480px;object-fit:contain;background:#000;border-radius:6px;display:block;margin-bottom:10px;"></video>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+        <figure style="margin:0;"><img src="assets/GLOWDERM_TXA_intro2a_외부.png" alt="약국 외부" style="width:100%;border-radius:6px;border:1px solid var(--gray-200);display:block;"><figcaption style="font-size:11px;color:var(--gray-600);text-align:center;margin-top:3px;">약국 외부</figcaption></figure>
+        <figure style="margin:0;"><img src="assets/GLOWDERM_TXA_intro2b_내부.png" alt="약국 내부" style="width:100%;border-radius:6px;border:1px solid var(--gray-200);display:block;"><figcaption style="font-size:11px;color:var(--gray-600);text-align:center;margin-top:3px;">약국 내부</figcaption></figure>
+        <figure style="margin:0;"><img src="assets/GLOWDERM_TXA_intro2c_진열.png" alt="제품 진열매대" style="width:100%;border-radius:6px;border:1px solid var(--gray-200);display:block;"><figcaption style="font-size:11px;color:var(--gray-600);text-align:center;margin-top:3px;">제품 진열매대</figcaption></figure>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection-title">#2~ 약국 방문형 콘텐츠 레퍼런스</div>
+  <p style="font-size:13.5px;color:var(--gray-600);margin-bottom:6px;">명동/성수 약국 + 외국인 친화 + 쇼핑리스트/공략</p>
+  <div class="ref-grid">
+    <div class="ref-card ref-card-full">
+      <video controls playsinline preload="metadata"
+        poster="assets/GLOWDERM_TXA_레퍼런스1_매장투어형.jpg"
+        src="assets/GLOWDERM_TXA_레퍼런스1_매장투어형.mp4"
+        style="max-height:480px;object-fit:contain;background:#000;"></video>
+      <div class="ref-card-body">
+        <div class="ref-card-num">01. Ready Young 매장 투어형</div>
+        <div class="ref-card-title">매장 외관 입장 → 제품 시연 → CTA</div>
+        <div class="ref-card-desc">
+          <ul>
+            <li><strong>인트로(0:00~0:18):</strong> 훅 → 매장 외관 → 입장 → 신뢰성 멘트<br>신뢰성 멘트: "여긴 전용 건강상담 공간 같다" / "직원들 다 전문 트레이닝, 중·영·일 다국어 응대 가능"</li>
+            <li><strong>본론(0:21~1:03):</strong> 매장 내부 소개 → 각 제품 손등 스와치·도포 시연 → 실사용 리액션</li>
+            <li><strong>아웃트로(1:03~1:22):</strong> 시연 → 사용 팁 → CTA → 제스처 + 매장 로고 클로징 샷</li>
+          </ul>
+        </div>
+        <a class="ref-card-link" href="https://www.rednote.com/explore/6a2ff2b6000000000f01d968?app_platform=ios&app_version=9.38.1&share_from_user_hidden=true&xsec_source=app_share&type=video&xsec_token=CBhZo3D8-uGt7v32M6QGa42t5d0UnJCGsFo6EajNCTyAI%3D&author_share=1&xhsshare=CopyLink&shareRedId=OEczNjY-Rks2NzUyOTgwNjZHOTo4SDY5&apptime=1784792096&share_id=e77c742cd15f407184e71e16a95d6903" target="_blank" rel="noopener">▶ RedNote 원본</a>
+      </div>
+    </div>
+    <div class="ref-card">
+      <video controls playsinline preload="metadata"
+        poster="assets/GLOWDERM_TXA_레퍼런스2_캐릭터형.jpg"
+        src="assets/GLOWDERM_TXA_레퍼런스2_캐릭터형.mp4"
+        style="aspect-ratio:9/16;object-fit:cover;background:#000;"></video>
+      <div class="ref-card-body">
+        <div class="ref-card-num">02. 크리에이터 캐릭터형 + 로컬 탐방</div>
+        <div class="ref-card-title">"한국 여자 감성 초스피드 충전! ⚡️ 여름철 투명 피부 만들어주는 꿀템!!!"</div>
+        <div class="ref-card-desc">
+          <ul>
+            <li><strong>인트로(0:00~0:18):</strong> 본인 소개 → 위치 태깅 → 매장 진입·리액션</li>
+            <li><strong>본론(0:21~1:36):</strong> 트렌드 언급 → 성분 설명 → 사용법 강조</li>
+            <li><strong>아웃트로(1:39~2:07):</strong> 매장 나와 근처 이동 → 팔로우 유도 마무리</li>
+          </ul>
+        </div>
+        <a class="ref-card-link" href="https://www.rednote.com/explore/6a4b43e000000000170080fc?xsec_token=AB7UpTWReHARh-CeG7jdyL-k-sGsg5vUmSETVbtQo5BNg=&xsec_source=pc_search&source=web_note_detail_r10" target="_blank" rel="noopener">▶ RedNote 원본</a>
+      </div>
+    </div>
+    <div class="ref-card">
+      <video controls playsinline preload="metadata"
+        poster="assets/GLOWDERM_TXA_레퍼런스3_정보형.jpg"
+        src="assets/GLOWDERM_TXA_레퍼런스3_정보형.mp4"
+        style="aspect-ratio:9/16;object-fit:cover;background:#000;"></video>
+      <div class="ref-card-body">
+        <div class="ref-card-num">03. 정보형 하울</div>
+        <div class="ref-card-title">"한국 오면 요즘 꼭 가봐야 하는 곳은 진짜 드럭스토어(약국 화장품 매장)예요!"</div>
+        <div class="ref-card-desc">
+          <ul>
+            <li><strong>인트로(0:00~0:15):</strong> 위치 핀 오버레이 → 매장 입장 → "이미 두 병 다 비웠다" 재구매 증거</li>
+            <li><strong>본론(0:18~0:57):</strong> 성분표 클로즈업 → 피부 변화 셀피 → 여러 제품 빠르게 훑는 하울</li>
+            <li><strong>아웃트로(0:57~1:09):</strong> 인기 조합팩 소개 → 매장 마스코트·간판 샷 마무리</li>
+          </ul>
+        </div>
+        <a class="ref-card-link" href="https://www.rednote.com/explore/699d5c59000000001d0261ea?app_platform=ios&app_version=9.38.1&share_from_user_hidden=true&xsec_source=app_share&type=video&xsec_token=CBSWVpK93T4MImHwUqgYCFyzSya3A0IuAVczlm3QcLdpc%3D&author_share=1&xhsshare=CopyLink&shareRedId=OEczNjY-Rks2NzUyOTgwNjZHOTo4SDY5&apptime=1784792072&share_id=b66363cde4794850a1212f1681831697" target="_blank" rel="noopener">▶ RedNote 원본</a>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page -->
+</div><!-- /pane-kr -->
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- CN PANE -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="pane pane-cn">
+<div class="page">
+
+  <h1 class="doc-title"><span class="brand-accent">GLOWDERM</span> TXA SET 拍摄指南 v2</h1>
+  <p class="doc-subtitle">访韩达人（博主）专用 · 来源：GLOWDERM品牌官方指南</p>
+  <p class="doc-lead">仅供参考 — 可以自由发挥个人风格，但以下必拍镜头和必说台词请务必遵守。</p>
+  <hr class="divider">
+
+  <!-- 品牌信息 -->
+  <div class="section-title"><span class="marker"></span>品牌信息</div>
+  <ul class="checklist">
+    <li><strong>品牌：</strong>GLOWDERM &nbsp;|&nbsp; 面霜 30ml / 洁面 120g &nbsp;|&nbsp; K-药局人气TXA系列</li>
+    <li><strong>入驻门店：</strong>圣水 / 明洞 / 江南 中您选择的药局（请在拍摄时提及地铁站名称+门店名称）</li>
+  </ul>
+  <hr class="divider">
+
+  <!-- 产品信息 -->
+  <div class="section-title"><span class="marker"></span>产品信息</div>
+  <p style="font-size:14px;margin-bottom:12px;"><strong>GLOWDERM TXA SET（CREAM + CLEANSER / 各1件）</strong></p>
+  <div class="spec-grid">
+    <div class="spec-card">
+      <div class="spec-card-header">TXA 5% Dark spot Mela Cream（30ml / 1.01 fl.oz）</div>
+      <div class="spec-card-body">
+        <ul>
+          <li>传明酸（TXA）<strong>50,000ppm</strong> 高浓度，焕亮肤色·改善暗沉·均匀肤色</li>
+          <li>肤色暗沉改善<strong class="num">11.43%</strong>·表面暗沉改善<strong class="num">22.76%</strong>·肤色不均改善<strong class="num">1.90%</strong> — 2周临床测试结果</li>
+          <li>持续使用，肤色会逐渐提亮（细腻珍珠光泽感）</li>
+          <li>高分子提拉薄膜设计，吸收后服帖紧致</li>
+          <li>低刺激性测试已完成，肤感温和</li>
+          <li>皮肤科护理后的日常护肤也适用</li>
+        </ul>
+      </div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-card-header">TXA Brightening Peeling Pack Cleanser（120g / 4.23 oz.）</div>
+      <div class="spec-card-body">
+        <ul>
+          <li>磨砂·面膜·洁面 <strong>3合1</strong></li>
+          <li>膏摩式磨砂，去除暗沉油脂及老旧角质</li>
+          <li>含TXA + 谷胱甘肽，透亮肤色管理（洁面后肤感清透，肤色逐渐均匀）</li>
+          <li>黑头改善<strong class="num">54.35%</strong>·老旧角质改善<strong class="num">68.20%</strong> — 2周临床测试结果</li>
+          <li>低刺激测试完成</li>
+          <li>+TIP：局部提亮护理（颈部 / 腋下 / 肘部 / 脚跟等）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="callout warning" style="margin-top:14px;">
+    <span class="callout-icon">⚠️</span>
+    <div class="callout-body"><strong>注意：</strong>两款产品的TXA成分含量不同，拍摄及提及时请务必注意。</div>
+  </div>
+  <div class="callout warning" style="margin-top:8px;">
+    <span class="callout-icon">🚫</span>
+    <div class="callout-body"><strong>※ 以上测试数据仅供内部参考</strong>，请勿在小红书笔记正文、字幕或口播中直接引用具体数值及功效对比表述。</div>
+  </div>
+  <hr class="divider">
+
+  <!-- 拍摄规则 -->
+  <div class="section-title"><span class="marker"></span>拍摄规则（必须遵守）</div>
+  <ul class="checklist">
+    <li>高清拍摄，避免滤镜过重或画质模糊</li>
+    <li>全片结构：药局外观 → GLOWDERM 品牌介绍 → 其他产品介绍</li>
+    <li><strong>45秒以上</strong>，不可以 vlog 合集形式发布</li>
+    <li>需同时配字幕+口播（用自己的语气自然说出；无声/仅字幕版可能被要求重拍）</li>
+    <li>提供产品在视频开头<strong>10秒内必须露出</strong>（INTRO段不计入此10秒）</li>
+  </ul>
+  <div class="callout info">
+    <span class="callout-icon">💡</span>
+    <div class="callout-body"><strong>视频开头（10秒）请按下方拍摄方案进行</strong></div>
+  </div>
+  <hr class="divider">
+
+  <!-- 视频必须包含 -->
+  <div class="section-title"><span class="marker"></span>视频必须包含的内容</div>
+  <ul class="checklist">
+    <li>药局名称及位置</li>
+    <li>药局招牌拍摄（露脸效果更佳）</li>
+    <li>品牌（GLOWDERM）及产品（TXA 5% CREAM + TXA CLEANSER）提及</li>
+    <li>门店内多款产品一并介绍<br><span style="font-size:13px;color:var(--gray-600);">示例：护肤品 / 健康补充剂 / 伴手礼类保健品等</span></li>
+    <li>产品特点·使用感请按照内容指南中的指定表述进行提及</li>
+  </ul>
+  <hr class="divider">
+
+  <!-- 封面 -->
+  <div class="section-title"><span class="marker"></span>封面（后挂点）</div>
+  <div class="scene-block">
+    <div class="scene-body">
+      <p style="font-size:14px;margin-bottom:8px;"><strong>1~3必须包含</strong>（参考下方参考图）</p>
+      <ul class="checklist">
+        <li>1. 药局外观</li>
+        <li>2. GLOWDERM（产品周围加边框或贴纸强调）</li>
+        <li>3. 达人本人面部</li>
+        <li>4. 其他产品等</li>
+      </ul>
+    </div>
+  </div>
+  <hr class="divider">
+
+  <!-- 拍摄方案 -->
+  <div class="section-title"><span class="marker"></span>🎬 拍摄方案（必须执行）</div>
+
+  <div class="scene-block">
+    <div class="scene-header"><span class="scene-num">#1 INTRO</span>三选一 ★地铁站名+门店名字幕必须出现</div>
+    <div class="scene-body">
+
+      <!-- 1方案 -->
+      <p style="font-weight:700;font-size:14px;margin-bottom:8px;color:var(--rose);">1方案 — 强调韩国药局</p>
+      <div class="cut-label">字幕</div>
+      <p class="cut-text">"来韩国必逛的药局购物清单！2026年下半年韩国药局好物清单"</p>
+      <div class="cut-label">镜头</div>
+      <p class="cut-text">药局招牌近景 → 入场 → 展示台 → 拿着产品推荐</p>
+      <div class="narr-label">口播</div>
+      <p class="narr-text">"来韩国不知道买啥？！来来来，我直接帮你列清单！这个，直接放进清单！"</p>
+
+      <hr class="divider-thin">
+
+      <!-- 2方案 -->
+      <p style="font-weight:700;font-size:14px;margin-bottom:8px;color:var(--rose);">2方案 — 强调地点（推荐）</p>
+      <div class="cut-label">字幕</div>
+      <p class="cut-text">"最近韩国人不去那家绿色连锁，都来这里！来韩国现在必去的地方！？"</p>
+      <div class="cut-label">镜头</div>
+      <p class="cut-text">走过那家绿色门店的第一人称视角 → 药局外观 → 入场 → 社交媒体插图</p>
+      <div class="narr-label">口播</div>
+      <p class="narr-text">"！？最近韩国人都去哪了？！？哦～原来在这里！我也在小红书上刷到过'（门店名）'！"</p>
+
+      <hr class="divider-thin">
+
+      <!-- 3方案 -->
+      <p style="font-weight:700;font-size:14px;margin-bottom:8px;color:var(--rose);">3方案 — 强调回购（需本人真实使用）</p>
+      <div class="cut-label">字幕</div>
+      <p class="cut-text">"已经用完一整瓶的韩国药局人气单品！？"</p>
+      <div class="cut-label">镜头</div>
+      <p class="cut-text">到韩国的氛围（机场最佳，街头招牌可替代）→ 前往药局的第一人称视角 → 近景招牌 → 展示台</p>
+      <div class="narr-label">口播</div>
+      <p class="narr-text">"之前在韩国种草了一款，直接用完了！！这次专门跑回来补货，真的只有这里有！"</p>
+    </div>
+  </div>
+
+  <!-- #2 -->
+  <div class="scene-block">
+    <div class="scene-header"><span class="scene-num">#2</span>药局及产品介绍</div>
+    <div class="scene-body">
+      <div class="callout info" style="margin-bottom:10px;">
+        <span class="callout-icon">💡</span>
+        <div class="callout-body">含药剂师面部的镜头，请先向药剂师确认后再拍摄（由达人直接沟通，明洞 Ready Young 店可能较难配合）</div>
+      </div>
+      <div class="cut-label">字幕</div>
+      <p class="cut-text">"TXA高浓度！药局里人气很高/问询特别多的产品？！"</p>
+      <div class="cut-label">镜头</div>
+      <p class="cut-text">药剂师推荐/讲解TXA成分·产品（专家权威感）</p>
+      <div class="narr-label">口播</div>
+      <p class="narr-text">"在韩国，不需要处方就可以买到用于改善暗沉和均匀肤色的产品。我直接问了药剂师，药剂师说TXA系列里这款是目前药局里问询特别多的单品。每天用都没问题～"</p>
+    </div>
+  </div>
+
+  <!-- #3 -->
+  <div class="scene-block">
+    <div class="scene-header"><span class="scene-num">#3</span>产品测试（核心 — 3-1、3-2方案均需拍摄）</div>
+    <div class="scene-body">
+      <div class="cut-label">字幕</div>
+      <p class="cut-text">"来，我试一下！"</p>
+
+      <p style="font-weight:700;font-size:14px;margin:10px 0 6px;color:var(--rose);">3-1方案 — 面霜</p>
+      <div class="cut-label">镜头</div>
+      <p class="cut-text">手背或面部测试 → 涂抹吸收</p>
+      <div class="narr-label">口播</div>
+      <p class="narr-text">"面霜里TXA含量高达5%，高浓度配方。对提亮肤色和改善紧致感都很不错。感觉肤色亮了不少，紧绷感也好了好多～"</p>
+
+      <hr class="divider-thin">
+
+      <p style="font-weight:700;font-size:14px;margin:10px 0 6px;color:var(--rose);">3-2方案 — 洁面</p>
+      <div class="cut-label">镜头</div>
+      <p class="cut-text">（住处另行拍摄）手背或面部涂抹 → 加水揉搓 → 清水洗净</p>
+      <div class="narr-label">口播</div>
+      <p class="narr-text">"超级温和！而且磨砂➕洁面一步到位，超方便！对管理黑头和老旧角质很有帮助。"</p>
+    </div>
+  </div>
+
+  <!-- #4 -->
+  <div class="scene-block">
+    <div class="scene-header"><span class="scene-num">#4</span>日常搭配 / 小贴士（CTA）</div>
+    <div class="scene-body">
+      <div class="cut-label">镜头</div>
+      <p class="cut-text">面霜和洁面一起展示</p>
+      <div class="narr-label">口播</div>
+      <p class="narr-text">"洁面和面霜搭配使用效果加倍！来韩国一定要在（到访药局名）找这些产品。这种在韩国药局才能买到的宝藏单品，来了真的不能错过！！"</p>
+    </div>
+  </div>
+
+  <div class="callout" style="margin:8px 0 16px;">
+    <span class="callout-icon">📌</span>
+    <div class="callout-body">#5~ 药局其他品牌产品自由介绍</div>
+  </div>
+
+  <!-- ENDING -->
+  <div class="scene-block">
+    <div class="scene-header"><span class="scene-num">#ENDING</span></div>
+    <div class="scene-body">
+      <div class="cut-label">镜头</div>
+      <p class="cut-text">拎着药局购物袋展示</p>
+      <div class="narr-label">口播</div>
+      <p class="narr-text">"旅游过来又又又发现宝藏！！！一起来逛逛吧～"等自由收尾</p>
+    </div>
+  </div>
+  <hr class="divider">
+
+  <!-- 话题 -->
+  <div class="section-title"><span class="marker"></span>话题（正文中添加）</div>
+  <p style="font-size:13px;color:var(--gray-600);margin-bottom:6px;">通用话题：</p>
+  <div class="hashtag-list">
+    <span class="hashtag-item">#한국약국 （韩国药局）</span>
+    <span class="hashtag-item">#KR약국 （KR药局）</span>
+    <span class="hashtag-item">#한국필수코스 （韩国必经之路）</span>
+    <span class="hashtag-item">#한국인피부 （韩国人肌肤）</span>
+    <span class="hashtag-item">#한국약국템 （韩国药局好物）</span>
+    <span class="hashtag-item">#TXA</span>
+    <span class="hashtag-item">#기초케어 （基础护肤）</span>
+    <span class="hashtag-item">#외국인친화 （外国人友好）</span>
+  </div>
+  <p style="font-size:13px;color:var(--gray-600);margin:12px 0 6px;">门店话题（按实际到访门店选择其一）：</p>
+  <div class="hashtag-list">
+    <span class="hashtag-item">#명동레디영약국 （明洞Ready Young药局）</span>
+    <span class="hashtag-item">#도레미약국성수점 （Doremi药局圣水店）</span>
+    <span class="hashtag-item">#도레미약국샾성수점 （Doremi药局SHOP圣水店）</span>
+    <span class="hashtag-item">#제일그랜드약국 （第一Grand药局）</span>
+  </div>
+  <hr class="divider">
+
+  <!-- 注意事项 -->
+  <div class="section-title"><span class="marker"></span>注意事项</div>
+  <p style="font-weight:700;font-size:14px;margin-bottom:6px;">内容创作</p>
+  <ul class="checklist">
+    <li>强调重点：GLOWDERM 提供的2款产品</li>
+    <li>封面 = 药局外观 + 提供产品（重点标注）+ 达人本人面部（必须）</li>
+  </ul>
+  <p style="font-weight:700;font-size:14px;margin:12px 0 6px;">内容发布</p>
+  <ul class="checklist">
+    <li>发布前必须经过PR负责人审核</li>
+    <li>到访后<strong>5日内</strong>完成上传</li>
+    <li>笔记不得擅自删除 / 禁止关闭点赞·评论功能</li>
+    <li>无字幕原片（未加字幕的原始视频素材）必须保存</li>
+    <li>笔记可能被品牌方用于二次宣传素材</li>
+  </ul>
+  <p style="font-weight:700;font-size:14px;margin:12px 0 6px;">合作条款及惩处</p>
+  <ul class="checklist">
+    <li>未提交内容或失联者，将被列入行业黑名单，并在行业内公示</li>
+    <li>未按期完成或中途取消者，须承担活动损失费用，且将被限制参与后续合作</li>
+    <li>如有后续修改需求，请积极配合</li>
+    <li>因违规或不可抗力导致笔记无法正常曝光/收录的，请配合修改内容或补发笔记</li>
+  </ul>
+  <hr class="divider">
+
+  <!-- 参考资料 -->
+  <div class="section-title"><span class="marker"></span>参考资料</div>
+  <div class="callout info" style="margin-bottom:16px;">
+    <span class="callout-icon">💡</span>
+    <div class="callout-body">※ 此参考部分基于旧版资料，链接以Notion最新版为准。<br><strong>核心模式：</strong>先建立信任信号 / 展示回购证据 / 成分表特写 / 本地化扩展结尾</div>
+  </div>
+
+  <div class="subsection-title">1. 封面参考（4格分割封面结构）</div>
+  <p style="font-size:13.5px;color:var(--gray-600);margin-bottom:10px;"><strong>四格分割封面</strong> — 1)药局外观 2)GLOWDERM（加边框/贴纸强调） 3)达人本人面部 4)其他产品</p>
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:14px;">
+    <img src="assets/GLOWDERM_TXA_thumb_pika1.png" alt="人生四格示例" style="width:100%;border-radius:8px;border:1px solid var(--gray-200);display:block;">
+    <img src="assets/GLOWDERM_TXA_thumb_pika2.png" alt="药局封面示例" style="width:100%;border-radius:8px;border:1px solid var(--gray-200);display:block;">
+  </div>
+  <div class="callout" style="margin-bottom:20px;">
+    <span class="callout-icon">📝</span>
+    <div class="callout-body" style="font-size:13px;line-height:1.75;">
+      <p style="margin-bottom:6px;"><strong>[pika酱·05-24·♥5.1千]</strong> 不限款式！不限次数！明洞这里！免费拍人生四格 I人全自助没人管！</p>
+      <p style="margin-bottom:6px;"><strong>[小小豆不小·03-08·♥1.6千]</strong> 中文翻译有 / 韩国本地人推荐 药局 / 值得买的变美清单 <span style="color:var(--gray-600);">— 注：原文"变美"为参考账号原创表达，非本品牌推荐用语</span></p>
+      <p style="margin-bottom:6px;"><strong>[pika酱·04-22·♥1.1千]</strong> 留子经验帮你码全！明洞必逛一站式药局 实用购物清单 不会韩语！没用过！怎么退税！</p>
+      <p><strong>[琳三岁同学·03-26·♥491]</strong> 2026 来明洞必逛的地儿!</p>
+    </div>
+  </div>
+
+  <div class="subsection-title">2. 内容参考（INTRO — 共2方案）※ 旧版参考为2案，现行以上文#1的3案为准</div>
+  <p style="font-size:13.5px;color:var(--gray-600);margin-bottom:12px;">镜头模式：前往途中 → 外观 → 内部 → 展示台</p>
+
+  <div class="scene-block">
+    <div class="scene-header"><span class="scene-num">方案1</span>前往路线引导型</div>
+    <div class="scene-body">
+      <video controls playsinline preload="metadata"
+        poster="assets/GLOWDERM_TXA_intro1a_가는길.png"
+        src="assets/GLOWDERM_TXA_INTRO1_가는길.mp4"
+        style="width:100%;max-height:480px;object-fit:contain;background:#000;border-radius:6px;display:block;margin-bottom:10px;"></video>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+        <figure style="margin:0;"><img src="assets/GLOWDERM_TXA_intro1a_가는길.png" alt="前往途中" style="width:100%;border-radius:6px;border:1px solid var(--gray-200);display:block;"><figcaption style="font-size:11px;color:var(--gray-600);text-align:center;margin-top:3px;">前往途中</figcaption></figure>
+        <figure style="margin:0;"><img src="assets/GLOWDERM_TXA_intro1b_외관.png" alt="药局外观" style="width:100%;border-radius:6px;border:1px solid var(--gray-200);display:block;"><figcaption style="font-size:11px;color:var(--gray-600);text-align:center;margin-top:3px;">药局外观</figcaption></figure>
+        <figure style="margin:0;"><img src="assets/GLOWDERM_TXA_intro1c_진열.png" alt="展示台" style="width:100%;border-radius:6px;border:1px solid var(--gray-200);display:block;"><figcaption style="font-size:11px;color:var(--gray-600);text-align:center;margin-top:3px;">展示台</figcaption></figure>
+      </div>
+    </div>
+  </div>
+
+  <div class="scene-block" style="margin-bottom:20px;">
+    <div class="scene-header"><span class="scene-num">方案2</span>直接进入型</div>
+    <div class="scene-body">
+      <video controls playsinline preload="metadata"
+        poster="assets/GLOWDERM_TXA_intro2a_외부.png"
+        src="assets/GLOWDERM_TXA_INTRO2_즉시진입.mp4"
+        style="width:100%;max-height:480px;object-fit:contain;background:#000;border-radius:6px;display:block;margin-bottom:10px;"></video>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+        <figure style="margin:0;"><img src="assets/GLOWDERM_TXA_intro2a_외부.png" alt="药局外部" style="width:100%;border-radius:6px;border:1px solid var(--gray-200);display:block;"><figcaption style="font-size:11px;color:var(--gray-600);text-align:center;margin-top:3px;">药局外部</figcaption></figure>
+        <figure style="margin:0;"><img src="assets/GLOWDERM_TXA_intro2b_내부.png" alt="药局内部" style="width:100%;border-radius:6px;border:1px solid var(--gray-200);display:block;"><figcaption style="font-size:11px;color:var(--gray-600);text-align:center;margin-top:3px;">药局内部</figcaption></figure>
+        <figure style="margin:0;"><img src="assets/GLOWDERM_TXA_intro2c_진열.png" alt="产品展示台" style="width:100%;border-radius:6px;border:1px solid var(--gray-200);display:block;"><figcaption style="font-size:11px;color:var(--gray-600);text-align:center;margin-top:3px;">产品展示台</figcaption></figure>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection-title">#2~ 药局探店内容参考</div>
+  <p style="font-size:13.5px;color:var(--gray-600);margin-bottom:6px;">明洞/圣水药局 + 外国人友好 + 购物清单/攻略</p>
+  <div class="ref-grid">
+    <div class="ref-card ref-card-full">
+      <video controls playsinline preload="metadata"
+        poster="assets/GLOWDERM_TXA_레퍼런스1_매장투어형.jpg"
+        src="assets/GLOWDERM_TXA_레퍼런스1_매장투어형.mp4"
+        style="max-height:480px;object-fit:contain;background:#000;"></video>
+      <div class="ref-card-body">
+        <div class="ref-card-num">01. Ready Young 门店探店型</div>
+        <div class="ref-card-title">门店外观进店 → 产品演示 → CTA</div>
+        <div class="ref-card-desc">
+          <ul>
+            <li><strong>开场(0:00~0:18)：</strong>钩子 → 门店外观 → 进店 → 信任建立台词<br>钩子：户外自拍"NO!"字幕 + "不要只去那家绿色连锁，我给你们挖到宝贝了"（参考账号原文提及竞品实名，此处已做回避处理）<br>信任台词："这里像专属健康咨询空间一样" / "Young不是指年龄" / "员工全部经过专业培训，支持中英日多语言服务"</li>
+            <li><strong>正文(0:21~1:03)：</strong>店内介绍 → 各产品手背试色·涂抹演示 → 实际使用反应</li>
+            <li><strong>结尾(1:03~1:22)：</strong>演示 → 使用小贴士 → CTA → 手势 + 门店LOGO收尾</li>
+          </ul>
+        </div>
+        <a class="ref-card-link" href="https://www.rednote.com/explore/6a2ff2b6000000000f01d968?app_platform=ios&app_version=9.38.1&share_from_user_hidden=true&xsec_source=app_share&type=video&xsec_token=CBhZo3D8-uGt7v32M6QGa42t5d0UnJCGsFo6EajNCTyAI%3D&author_share=1&xhsshare=CopyLink&shareRedId=OEczNjY-Rks2NzUyOTgwNjZHOTo4SDY5&apptime=1784792096&share_id=e77c742cd15f407184e71e16a95d6903" target="_blank" rel="noopener">▶ RedNote 原版</a>
+      </div>
+    </div>
+    <div class="ref-card">
+      <video controls playsinline preload="metadata"
+        poster="assets/GLOWDERM_TXA_레퍼런스2_캐릭터형.jpg"
+        src="assets/GLOWDERM_TXA_레퍼런스2_캐릭터형.mp4"
+        style="aspect-ratio:9/16;object-fit:cover;background:#000;"></video>
+      <div class="ref-card-body">
+        <div class="ref-card-num">02. 达人人设型 + 本地探店</div>
+        <div class="ref-card-title">"韩国女生感性超速充电！⚡️ 夏日透亮肌肤好物！！！" <span style="font-size:11px;font-weight:400;color:var(--gray-600);">— 注：原文"神器"等词为参考账号原创表达，非本品牌推荐用语</span></div>
+        <div class="ref-card-desc">
+          <ul>
+            <li><strong>开场(0:00~0:18)：</strong>达人自我介绍 → 位置标注 → 进入门店·反应</li>
+            <li><strong>正文(0:21~1:36)：</strong>提及趋势 → 成分说明 → 夏季用法、妆前使用、旅行/礼品包装强调</li>
+            <li><strong>结尾(1:39~2:07)：</strong>撑伞走出门店 → 达人主页+心形打勾图标引导关注</li>
+          </ul>
+        </div>
+        <a class="ref-card-link" href="https://www.rednote.com/explore/6a4b43e000000000170080fc?xsec_token=AB7UpTWReHARh-CeG7jdyL-k-sGsg5vUmSETVbtQo5BNg=&xsec_source=pc_search&source=web_note_detail_r10" target="_blank" rel="noopener">▶ RedNote 原版</a>
+      </div>
+    </div>
+    <div class="ref-card">
+      <video controls playsinline preload="metadata"
+        poster="assets/GLOWDERM_TXA_레퍼런스3_정보형.jpg"
+        src="assets/GLOWDERM_TXA_레퍼런스3_정보형.mp4"
+        style="aspect-ratio:9/16;object-fit:cover;background:#000;"></video>
+      <div class="ref-card-body">
+        <div class="ref-card-num">03. 信息型购物分享</div>
+        <div class="ref-card-title">"来韩国最近一定要去的地方就是这里（真正的药妆店）！"（参考账号原文标题，非本品牌用语）</div>
+        <div class="ref-card-desc">
+          <ul>
+            <li><strong>开场(0:00~0:15)：</strong>位置标注 → 进入门店 → "已经用完两瓶了"以回购为证开始介绍产品</li>
+            <li><strong>正文(0:18~0:57)：</strong>成分表近景 → 皮肤变化自拍 → 快速扫过多款产品的购物分享结构</li>
+            <li><strong>结尾(0:57~1:09)：</strong>推荐人气组合装 → 门店吉祥物·招牌镜头收尾</li>
+          </ul>
+        </div>
+        <a class="ref-card-link" href="https://www.rednote.com/explore/699d5c59000000001d0261ea?app_platform=ios&app_version=9.38.1&share_from_user_hidden=true&xsec_source=app_share&type=video&xsec_token=CBSWVpK93T4MImHwUqgYCFyzSya3A0IuAVczlm3QcLdpc%3D&author_share=1&xhsshare=CopyLink&shareRedId=OEczNjY-Rks2NzUyOTgwNjZHOTo4SDY5&apptime=1784792072&share_id=b66363cde4794850a1212f1681831697" target="_blank" rel="noopener">▶ RedNote 原版</a>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page -->
+</div><!-- /pane-cn -->
+
+<script>
+  function setLang(lang) {
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-kr').className = 'lang-btn' + (lang === 'kr' ? ' active' : '');
+    document.getElementById('btn-cn').className = 'lang-btn' + (lang === 'cn' ? ' active' : '');
+    document.querySelectorAll('video').forEach(function(v){ v.pause(); });
+  }
+</script>
+</body>
+</html>
