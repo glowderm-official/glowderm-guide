@@ -108,8 +108,8 @@
   .store-map-btn:hover { background: #a33459; }
   /* Checklist */
   .checklist { list-style: none; padding: 0; margin-bottom: 8px; }
-  .checklist li { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; margin-bottom: 5px; color: var(--gray-800); }
-  .checklist li::before { content: "✦"; color: var(--rose); font-size: 10px; margin-top: 5px; flex-shrink: 0; }
+  .checklist li { display: block; position: relative; padding-left: 18px; font-size: 14px; margin-bottom: 5px; color: var(--gray-800); word-break: keep-all; overflow-wrap: break-word; }
+  .checklist li::before { content: "✦"; color: var(--rose); font-size: 10px; position: absolute; left: 0; top: 5px; }
   /* Product spec */
   .spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px; }
   @media (max-width: 520px) { .spec-grid { grid-template-columns: 1fr; } }
