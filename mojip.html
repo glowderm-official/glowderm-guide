@@ -118,6 +118,12 @@
   .spec-card-body { padding: 10px 12px; font-size: 13.5px; line-height: 1.7; }
   .spec-card-body li { margin-bottom: 3px; }
   .num { font-weight: 700; color: var(--rose); }
+  /* Compare table (video vs photo) */
+  .compare-table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+  .compare-table th, .compare-table td { border: 1px solid var(--gray-200); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .compare-table th { background: var(--gray-100); font-weight: 700; color: var(--gray-800); }
+  .compare-table td.hl { color: var(--rose); font-weight: 700; }
+  @media (max-width: 600px) { .compare-table { font-size: 12px; } .compare-table th, .compare-table td { padding: 6px 7px; } }
   @media print {
     .lang-bar { display: none !important; }
     .pane-kr, .pane-cn { display: block !important; page-break-before: always; }
@@ -173,7 +179,7 @@
     <div class="store-card">
       <div class="store-card-header">
         <span class="store-badge">명동</span>
-        <span class="store-card-header-title">수령: 착한구두 명동점 → 촬영: 레디영</span>
+        <span class="store-card-header-title">레디영약국에서 수령+촬영 한 번에</span>
       </div>
       <div class="store-card-body">
         <div class="store-name">명동레디영약국<br><span style="font-size:12px;font-weight:400;color:var(--gray-600);">Myeongdong Ready Young Pharmacy</span></div>
@@ -181,9 +187,9 @@
           <div>📍 서울특별시 중구 명동8나길 7</div>
           <div>🕐 매일 10:00 ~ 24:30 (24:30 영업 종료)</div>
         </div>
-        <div class="store-note">먼저 <strong>착한구두(CHAAKAN) 명동 플래그십</strong>(명동8나길 25, 1~3층 · 매일 10:00~23:00)에서 제품 수령 → 레디영약국으로 이동해 촬영 (같은 길, 도보 이동)</div>
-        <a class="store-map-btn" href="https://share.google/bNXK80pEK5ybQ7uuw" target="_blank" rel="noopener">📍 수령처(착한구두) Google Maps</a>
-        <a class="store-map-btn" href="https://maps.app.goo.gl/6qT5stPcwrfdVjkt7" target="_blank" rel="noopener">📍 촬영지(약국) Google Maps</a>
+        <div class="store-note">착한구두 명동점 경유 없이 <strong>레디영약국 한 곳</strong>에서 제품 수령과 촬영이 모두 가능합니다.</div>
+        <div class="store-note" style="border-left-color:#e07b20;background:#fff3e0;">⚠️ 약사님 촬영 협조가 어려운 매장입니다 — 약사 등장 장면은 기대하지 말아주세요.</div>
+        <a class="store-map-btn" href="https://maps.app.goo.gl/6qT5stPcwrfdVjkt7" target="_blank" rel="noopener">📍 수령·촬영지(약국) Google Maps</a>
       </div>
     </div>
 
@@ -191,7 +197,7 @@
     <div class="store-card">
       <div class="store-card-header">
         <span class="store-badge">성수</span>
-        <span class="store-card-header-title">수령 가능</span>
+        <span class="store-card-header-title">수령 가능 · 약사 협조 확정 ✅</span>
       </div>
       <div class="store-card-body">
         <div class="store-name">도레미약국 성수점</div>
@@ -200,6 +206,7 @@
           <div>🕐 매일 10:00 ~ 21:30 (21:30 영업 종료)</div>
         </div>
         <div class="store-note">매장 내 제품 수령 가능</div>
+        <div class="store-note">약사님 촬영 협조가 이미 확정되어 있어 현장에서 따로 부탁하실 필요 없습니다.</div>
         <a class="store-map-btn" href="https://maps.app.goo.gl/wtBezvBoE1yxx4zt8" target="_blank" rel="noopener">📍 Google Maps</a>
       </div>
     </div>
@@ -208,7 +215,7 @@
     <div class="store-card">
       <div class="store-card-header">
         <span class="store-badge">강남</span>
-        <span class="store-card-header-title">수령 가능 여부 확인 필요</span>
+        <span class="store-card-header-title">수령 가능 · 약사 협조 확정 ✅</span>
       </div>
       <div class="store-card-body">
         <div class="store-name">제일그랜드약국 공공심야약국</div>
@@ -217,7 +224,8 @@
           <div style="font-size:12px;color:var(--gray-600);">9호선 신논현역 3번 출구 앞 위치 (24/7 pharmacy)</div>
           <div>🕐 00:00~24:00 (24시간 영업)</div>
         </div>
-        <div class="store-note">매장 내 제품 수령 가능 여부 확인 필요</div>
+        <div class="store-note">매장 내 제품 수령 가능</div>
+        <div class="store-note">약사님 촬영 협조가 이미 확정되어 있어 현장에서 따로 부탁하실 필요 없습니다.</div>
         <a class="store-map-btn" href="https://maps.app.goo.gl/dRQw9J3p28xcGHaS7" target="_blank" rel="noopener">📍 Google Maps</a>
       </div>
     </div>
@@ -225,11 +233,21 @@
   <hr class="divider">
 
   <!-- 제공 내역 -->
-  <div class="section-title"><span class="marker"></span>제공 내역 (초과 금액은 본인 부담)</div>
-  <p style="font-size:14px;margin-bottom:10px;"><strong>GLOWDERM TXA 1 SET</strong> (CREAM 1ea + peeling pack CLEANSER 1ea)</p>
+  <div class="section-title"><span class="marker"></span>제공 내역</div>
+  <p style="font-size:14px;margin-bottom:10px;"><strong>GLOWDERM TXA 1 SET</strong> (CREAM 1ea + peeling pack CLEANSER 1ea) + <strong>착한구두 신발</strong></p>
   <ul class="checklist">
     <li>TXA 5% CREAM — TXA 5% 고함량 기미 잡티케어 크림</li>
     <li>TXA 3in1 peeling pack CLEANSER — TXA 함유 3in1 필링 팩 클렌저</li>
+    <li><strong>착한구두(CHAAKAN) 신발</strong>: 영상(视频) 노트 크리에이터 <strong class="num">2족</strong> / 사진(图文) 노트 크리에이터 <strong class="num">1족</strong></li>
+  </ul>
+
+  <div class="subsection-title">신발 수령 안내</div>
+  <ul class="checklist">
+    <li><strong>수령 매장</strong>: 촬영 일정 확정 시 1곳을 개별 안내드립니다</li>
+    <li><strong>상품 선택</strong>: 사전 접수 없이, 매장 재고 중 현장에서 직접 고르시면 됩니다 (일부 모델·사이즈는 품절일 수 있습니다)</li>
+    <li><strong>수령 시점</strong>: 방한 기간 중 아무 날이나 가능합니다. <strong>수령 예정일시(시간까지)</strong>는 사전에 정합니다</li>
+    <li>양도 불가 — 매장 직원이 수령 전 크리에이터 본인의 샤오홍슈 계정을 확인합니다</li>
+    <li>매장·수령 일시가 확정된 크리에이터에게 개별 안내됩니다</li>
   </ul>
   <hr class="divider">
 
@@ -282,19 +300,31 @@
   <!-- 협업 가이드 -->
   <div class="section-title"><span class="marker"></span>협업 가이드 (반드시 숙지)</div>
 
-  <div class="subsection-title">콘텐츠 제작</div>
-  <ul class="checklist">
-    <li><strong>영상:</strong> 45초 이상 / 브이로그·모음집 형식 가능 (모음집일 경우 GLOWDERM을 첫 번째 제품으로 10초 이상 노출)</li>
-    <li><strong>컨셉:</strong> 방한 약국</li>
-    <li><strong>구조:</strong> INTRO 약국 외관 → 10초 (브랜드소개 → 제품소개 → 제품 테스트 → CTA) → 타 제품들 소개 → ENDING 쇼핑백 흔들며 같이 구경가요~ 마무리</li>
-    <li>영상 시작 초반 10초 동안 제공받은 제품 및 브랜드 노출/언급 필수</li>
+  <div class="subsection-title">콘텐츠 제작 (영상 또는 사진 — 택 1)</div>
+  <p style="font-size:14px;margin-bottom:8px;">영상(视频) 노트 외에 <strong>사진(图文) 노트도 가능</strong>합니다. 형식에 따라 요건과 리워드 수량이 다르니 아래 표를 보고 선택해주세요.</p>
+  <div style="overflow-x:auto;">
+  <table class="compare-table">
+    <tr><th>구분</th><th>영상(视频) 노트</th><th>사진(图文) 노트</th></tr>
+    <tr><td>리워드</td><td class="hl">신발 2족</td><td class="hl">신발 1족</td></tr>
+    <tr><td>분량</td><td>45초 이상 (브이로그·모음집 가능)</td><td>9~10장 이상 권장 (상한 없음)</td></tr>
+    <tr><td>브랜드/제품 노출 시점</td><td>시작 10초 이내</td><td>1~2번째 사진 이내</td></tr>
+    <tr><td>커버(대표 사진)</td><td>—</td><td>1번째 사진에 약국 간판이 식별 가능하게 포함 — 단독 외관샷 또는 4분할 콜라주 둘 다 가능 (상호가 가려지지 않게)</td></tr>
+    <tr><td>본문(캡션)</td><td>가이드라인 지정 표현 준수</td><td>필수, 500~1000자 권장 (图文은 캡션 비중이 절반)</td></tr>
+    <tr><td>해시태그</td><td>가이드라인 지정 태그</td><td>9~10개</td></tr>
+    <tr><td>컨셉·구조</td><td>방한 약국 / INTRO 외관 → 10초(브랜드→제품→테스트→CTA) → 타 제품 소개 → ENDING</td><td>방한 약국 (동일) / 타 판매 제품 노출 + 약사 추천 장면 필요** (동일)</td></tr>
+  </table>
+  </div>
+  <ul class="checklist" style="margin-top:8px;">
+    <li>영상: 모음집일 경우 GLOWDERM을 첫 번째 제품으로 10초 이상 노출, 시작 10초 동안 제공받은 제품 및 브랜드 노출/언급 필수</li>
+    <li>사진(图文): 커버(1번째 사진)에 약국 간판이 식별 가능하게 포함 (단독 외관샷 또는 4분할 콜라주 둘 다 가능), 브랜드/제품은 1~2번째 사진 이내 노출 필수. 9~10장 이상 권장, 상한 없음.</li>
+    <li>** 약사 추천 장면은 성수·강남만 해당 (약사 협조 확정). 명동은 약사 협조가 어려워 해당 장면 없이 진행됩니다.</li>
   </ul>
 
   <div class="subsection-title">반드시 포함해야 하는 내용</div>
   <ul class="checklist">
     <li>제공받는 제품 [GLOWDERM TXA 크림, 클렌저 1set]와 함께 약국에서 판매 중인 제품을 콘텐츠에 포함하고 관련 해시태그 추가</li>
     <li>약국 이름 및 위치 + 약국 간판 촬영 + 한국 명동/성수/강남에 위치한 약국인 점 (실제 방문 매장 내용으로 기재)</li>
-    <li>약사님이 성분·제품을 추천·설명하는 장면 (가능하면 — 크리에이터가 직접 약사님께 촬영 협조 요청)</li>
+    <li>약사님이 성분·제품을 추천·설명하는 장면: <strong>성수(도레미약국)·강남(제일그랜드약국)은 약사 협조가 이미 확정</strong>되어 있어 현장에서 따로 부탁하실 필요가 없습니다. <strong>단, 명동(명동레디영약국)은 약사 촬영 협조가 어려워</strong> 약사 등장 장면 없이 진행됩니다 — 명동 지원 시 사전 참고 부탁드립니다.</li>
     <li>제품 특징·사용감 멘트는 가이드라인 내 지정 표현을 따를 것</li>
     <li>해시태그 확인 후 캡션 내 필수 삽입 (가이드라인 참고)</li>
   </ul>
@@ -376,7 +406,7 @@
     <div class="store-card">
       <div class="store-card-header">
         <span class="store-badge">明洞</span>
-        <span class="store-card-header-title">领取：CHAAKAN明洞店 → 拍摄：Ready Young</span>
+        <span class="store-card-header-title">在Ready Young药局一次完成领取+拍摄</span>
       </div>
       <div class="store-card-body">
         <div class="store-name">明洞Ready Young药局<br><span style="font-size:12px;font-weight:400;color:var(--gray-600);">Myeongdong Ready Young Pharmacy</span></div>
@@ -384,9 +414,9 @@
           <div>📍 서울특별시 중구 명동8나길 7（首尔市中区明洞8나길 7）</div>
           <div>🕐 每天 10:00 ~ 24:30（24:30 停止营业）</div>
         </div>
-        <div class="store-note">请先到 <strong>CHAAKAN（착한구두）明洞旗舰店</strong>（明洞8나길 25，1~3层 · 每天 10:00~23:00）领取产品 → 再前往 Ready Young药局拍摄（同一条街，步行即可）</div>
-        <a class="store-map-btn" href="https://share.google/bNXK80pEK5ybQ7uuw" target="_blank" rel="noopener">📍 领取地点(CHAAKAN) Google Maps</a>
-        <a class="store-map-btn" href="https://maps.app.goo.gl/6qT5stPcwrfdVjkt7" target="_blank" rel="noopener">📍 拍摄地点(药局) Google Maps</a>
+        <div class="store-note">无需前往CHAAKAN明洞店，在<strong>明洞Ready Young药局一处</strong>即可完成产品领取和拍摄。</div>
+        <div class="store-note" style="border-left-color:#e07b20;background:#fff3e0;">⚠️ 该门店药剂师出镜拍摄配合难度较高，请勿期待药剂师出镜画面。</div>
+        <a class="store-map-btn" href="https://maps.app.goo.gl/6qT5stPcwrfdVjkt7" target="_blank" rel="noopener">📍 领取·拍摄地点(药局) Google Maps</a>
       </div>
     </div>
 
@@ -394,7 +424,7 @@
     <div class="store-card">
       <div class="store-card-header">
         <span class="store-badge">圣水</span>
-        <span class="store-card-header-title">可在门店领取</span>
+        <span class="store-card-header-title">可在门店领取 · 药剂师配合已确定 ✅</span>
       </div>
       <div class="store-card-body">
         <div class="store-name">도레미약국 성수점<br><span style="font-size:12px;font-weight:400;color:var(--gray-600);">Doremi药局 圣水店</span></div>
@@ -403,6 +433,7 @@
           <div>🕐 每天 10:00 ~ 21:30（21:30 停止营业）</div>
         </div>
         <div class="store-note">可在门店内领取产品</div>
+        <div class="store-note">药剂师拍摄配合已提前确定，到店后无需另行沟通。</div>
         <a class="store-map-btn" href="https://maps.app.goo.gl/wtBezvBoE1yxx4zt8" target="_blank" rel="noopener">📍 Google Maps</a>
       </div>
     </div>
@@ -411,7 +442,7 @@
     <div class="store-card">
       <div class="store-card-header">
         <span class="store-badge">江南</span>
-        <span class="store-card-header-title">能否领取需另行确认</span>
+        <span class="store-card-header-title">可在门店领取 · 药剂师配合已确定 ✅</span>
       </div>
       <div class="store-card-body">
         <div class="store-name">제일그랜드약국 공공심야약국<br><span style="font-size:12px;font-weight:400;color:var(--gray-600);">第一Grand药局 公共深夜药局</span></div>
@@ -420,7 +451,8 @@
           <div style="font-size:12px;color:var(--gray-600);">位于地铁9号线新论岘站（Sinnonhyeon）3号出口正对面</div>
           <div>🕐 00:00~24:00（24小时营业）</div>
         </div>
-        <div class="store-note">能否在门店内领取产品，需另行确认</div>
+        <div class="store-note">可在门店内领取产品</div>
+        <div class="store-note">药剂师拍摄配合已提前确定，到店后无需另行沟通。</div>
         <a class="store-map-btn" href="https://maps.app.goo.gl/dRQw9J3p28xcGHaS7" target="_blank" rel="noopener">📍 Google Maps</a>
       </div>
     </div>
@@ -428,11 +460,21 @@
   <hr class="divider">
 
   <!-- 合作提供 -->
-  <div class="section-title"><span class="marker"></span>合作提供（超出部分自理）</div>
-  <p style="font-size:14px;margin-bottom:10px;"><strong>GLOWDERM TXA 1套装</strong>（CREAM 1件 + peeling pack CLEANSER 1件）</p>
+  <div class="section-title"><span class="marker"></span>合作提供</div>
+  <p style="font-size:14px;margin-bottom:10px;"><strong>GLOWDERM TXA 1套装</strong>（CREAM 1件 + peeling pack CLEANSER 1件）+ <strong>CHAAKAN鞋履</strong></p>
   <ul class="checklist">
     <li>TXA 5% CREAM — TXA 5% 高浓度焕亮修护霜（提亮肤色·改善暗沉）</li>
     <li>TXA 3in1 peeling pack CLEANSER — 含TXA的3合1磨砂洁面膜</li>
+    <li><strong>CHAAKAN（착한구두）鞋履</strong>：视频笔记达人 <strong class="num">2双</strong> / 图文笔记达人 <strong class="num">1双</strong></li>
+  </ul>
+
+  <div class="subsection-title">鞋履领取说明</div>
+  <ul class="checklist">
+    <li><strong>领取门店</strong>：拍摄档期确认后单独告知1家门店</li>
+    <li><strong>款式选择</strong>：无需提前申报，到店后从现有库存中自行挑选（部分款式·尺码可能缺货）</li>
+    <li><strong>领取时间</strong>：访韩期间任意一天均可，须提前确定<strong>领取日期及具体时间</strong></li>
+    <li>不可转让 — 领取前门店工作人员将核实达人本人的小红书账号</li>
+    <li>门店及领取时间确认后将为达人单独告知</li>
   </ul>
   <hr class="divider">
 
@@ -485,19 +527,31 @@
   <!-- 合作指南 -->
   <div class="section-title"><span class="marker"></span>合作指南（请务必仔细阅读）</div>
 
-  <div class="subsection-title">内容创作</div>
-  <ul class="checklist">
-    <li><strong>视频时长：</strong>45秒以上 / 可以 Vlog·合集形式（合集时 GLOWDERM 须为第一个介绍的产品，露出10秒以上）</li>
-    <li><strong>内容概念：</strong>访韩药局探店</li>
-    <li><strong>内容结构：</strong>INTRO 药局外观 → 10秒（品牌介绍 → 产品介绍 → 产品测试 → 引导粉丝打卡/种草（CTA））→ 其他产品介绍 → ENDING 手提购物袋收尾，邀请大家一起来打卡～</li>
-    <li>视频开头10秒内必须露出/提及所提供的产品及品牌</li>
+  <div class="subsection-title">内容创作（视频 或 图文 — 二选一）</div>
+  <p style="font-size:14px;margin-bottom:8px;">除视频笔记外，<strong>现在也可以选择图文笔记</strong>。不同形式的要求和礼品数量不同，请参考下表选择适合自己的形式。</p>
+  <div style="overflow-x:auto;">
+  <table class="compare-table">
+    <tr><th>对比项</th><th>视频笔记</th><th>图文笔记</th></tr>
+    <tr><td>礼品</td><td class="hl">鞋 2双</td><td class="hl">鞋 1双</td></tr>
+    <tr><td>篇幅</td><td>45秒以上（可 Vlog·合集形式）</td><td>建议9~10张照片以上（无上限）</td></tr>
+    <tr><td>品牌/产品露出节点</td><td>开头10秒内</td><td>第1~2张照片以内</td></tr>
+    <tr><td>封面图</td><td>—</td><td>第1张照片须能清楚识别药局招牌 — 单独的门店外观图或四格拼图均可，药局名称不可被遮挡</td></tr>
+    <tr><td>正文（文案）</td><td>按内容指南指定表述</td><td>必须撰写，建议 500~1000字（图文笔记文案占比重要）</td></tr>
+    <tr><td>话题标签</td><td>按内容指南指定标签</td><td>9~10个</td></tr>
+    <tr><td>内容概念·结构</td><td>访韩药局探店 / INTRO 外观 → 10秒（品牌→产品→测试→CTA）→ 其他产品介绍 → ENDING</td><td>访韩药局探店（相同）/ 需同样展示药局在售其他产品 + 药剂师推荐场景**（相同）</td></tr>
+  </table>
+  </div>
+  <ul class="checklist" style="margin-top:8px;">
+    <li>视频：合集时 GLOWDERM 须为第一个介绍的产品，露出10秒以上，开头10秒内必须露出/提及所提供的产品及品牌</li>
+    <li>图文：封面（第1张）须能清楚识别药局招牌（单独的门店外观图或四格拼图均可），品牌/产品须在第1~2张照片以内露出，建议9~10张以上，无上限</li>
+    <li>** 药剂师推荐场景仅限圣水·江南（药剂师配合已确定）。明洞药剂师配合难度较高，将不含该场景。</li>
   </ul>
 
   <div class="subsection-title">必须包含的内容</div>
   <ul class="checklist">
     <li>需在内容中同时展示所提供的产品【GLOWDERM TXA 霜、洁面膜 1套】以及药局内在售的其他产品，并添加相关话题标签。</li>
     <li>药局名称及位置 + 药局招牌拍摄 + 强调该药局位于韩国明洞/圣水/江南（请按实际到访门店填写）</li>
-    <li>药剂师推荐/讲解成分与产品的场景（如条件允许 — 请由达人直接向药剂师沟通拍摄）</li>
+    <li>药剂师推荐/讲解成分与产品的场景：<strong>圣水（Doremi药局）·江南（第一Grand药局）药剂师拍摄配合已提前确定</strong>，到店后无需达人自行沟通。<strong>明洞（Ready Young药局）药剂师出镜配合难度较高</strong>，将不含药剂师出镜场景，请报名明洞门店的达人提前知悉。</li>
     <li>产品特点·使用感请按照内容指南中的指定表述进行提及</li>
     <li>确认话题标签后务必在帖子正文中添加（参考内容指南）</li>
   </ul>
